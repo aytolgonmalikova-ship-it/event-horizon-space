@@ -146,10 +146,10 @@ export default function Home() {
         <SectionHeading id="overview-title" eyebrow={t('overviewEyebrow')} title={t('overviewTitle')} lead={t('overviewLead')} />
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-6">
           {sectionsOverview.map((s, i) => (
-            <Reveal key={s.to} delay={i * 80} className={`flex flex-col ${i < 2 ? 'lg:col-span-3' : 'lg:col-span-2'}`}>
+            <Reveal key={s.to} delay={i * 80} className={`flex flex-col ${i < 2 ? 'lg:col-span-3' : 'lg:col-span-2'} ${i === sectionsOverview.length - 1 && sectionsOverview.length % 2 ? 'md:col-span-2 lg:col-span-2' : ''}`}>
               <Link
                 to={s.to}
-                className="group relative flex min-h-[340px] flex-1 flex-col justify-end overflow-hidden rounded-3xl border border-white/10 transition duration-500 hover:border-white/25 hover:shadow-glow"
+                className="group relative flex min-h-[300px] flex-1 flex-col justify-end sm:min-h-[340px] overflow-hidden rounded-3xl border border-white/10 transition duration-500 hover:border-white/25 hover:shadow-glow"
               >
                 <img
                   src={images[s.image].src}

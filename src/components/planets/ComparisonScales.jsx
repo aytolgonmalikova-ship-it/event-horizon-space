@@ -10,13 +10,13 @@ function SizeView({ onSelect }) {
   const { tr, nf, t } = useLang();
   const max = Math.max(...planetsData.map((p) => p.diameterKm));
   return (
-    <div className="no-scrollbar -mx-4 overflow-x-auto px-4">
-      <div className="flex min-w-[640px] items-end justify-between gap-2 pb-2 pt-6">
+    <div className="no-scrollbar sm:-mx-4 sm:overflow-x-auto sm:px-4">
+      <div className="grid grid-cols-4 items-end gap-x-2 gap-y-6 pb-2 pt-6 sm:flex sm:min-w-[560px] sm:justify-between">
         {planetsData.map((p) => {
           const pct = (p.diameterKm / max) * 100;
           return (
             <button key={p.id} type="button" onClick={() => onSelect(p.id)} className="group flex flex-1 flex-col items-center gap-3">
-              <div className="flex w-full items-end justify-center" style={{ height: 180 }}>
+              <div className="flex h-24 w-full items-end justify-center sm:h-[180px]">
                 <div style={{ width: `${Math.max(pct, 2.2)}%`, maxWidth: 180, minWidth: 6 }} className="aspect-square">
                   <PlanetGlobe
                     imageKey={p.image}

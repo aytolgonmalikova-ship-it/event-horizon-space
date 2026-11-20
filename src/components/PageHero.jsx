@@ -5,7 +5,7 @@ import Credit from './Credit';
 export default function PageHero({ imageKey, eyebrow, title, lead, children }) {
   const img = images[imageKey];
   return (
-    <section className="relative isolate flex min-h-[78vh] items-end overflow-hidden pb-16 pt-32 sm:min-h-[82vh]">
+    <section className="relative isolate flex min-h-[78svh] items-end overflow-hidden pb-14 pt-28 sm:min-h-[82svh] sm:pb-16 sm:pt-32">
       {img && (
         <img
           src={img.hero}

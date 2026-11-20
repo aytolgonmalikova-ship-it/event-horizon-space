@@ -51,7 +51,7 @@ export default function Modal({ open, onClose, children, labelledBy, wide = fals
         aria-modal="true"
         aria-labelledby={labelledBy}
         tabIndex={-1}
-        className={`glass-strong relative max-h-[92vh] w-full min-w-0 animate-fade-up overflow-y-auto rounded-t-3xl shadow-glow outline-none sm:rounded-3xl ${
+        className={`glass-strong relative max-h-[92dvh] w-full min-w-0 animate-fade-up overflow-y-auto rounded-t-3xl shadow-glow outline-none sm:rounded-3xl ${
           wide ? 'max-w-6xl' : 'max-w-4xl'
         }`}
       >

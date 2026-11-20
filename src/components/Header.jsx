@@ -23,7 +23,7 @@ function LangSwitcher({ className = '' }) {
           onClick={() => setLang(l.code)}
           aria-pressed={lang === l.code}
           title={l.name}
-          className={`rounded-full px-2.5 py-1 text-xs font-semibold tracking-wider transition ${
+          className={`rounded-full px-2 py-1 text-xs sm:px-2.5 font-semibold tracking-wider transition ${
             lang === l.code ? 'bg-white text-void shadow-glow' : 'text-slate-300 hover:text-white'
           }`}
         >
@@ -72,10 +72,10 @@ export default function Header() {
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-void">
         {t('skipToContent')}
       </a>
-      <div className="container-x flex h-16 items-center justify-between gap-4 lg:h-20">
+      <div className="container-x flex h-16 items-center justify-between gap-2 sm:gap-4 lg:h-20">
         <Link to="/" className="group flex items-center gap-2.5" aria-label={t('siteName')}>
-          <Logo className="h-9 w-9 transition duration-700 group-hover:rotate-180" />
-          <span className="font-display text-base font-semibold tracking-[0.18em] text-white sm:text-lg">
+          <Logo className="h-8 w-8 shrink-0 transition duration-700 group-hover:rotate-180 sm:h-9 sm:w-9" />
+          <span className="hidden font-display text-base font-semibold tracking-[0.18em] text-white min-[375px]:inline sm:text-lg">
             {t('siteShort').toUpperCase()}
           </span>
         </Link>
@@ -106,11 +106,11 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <LangSwitcher />
           <button
             type="button"
-            className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 lg:hidden"
+            className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 lg:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -126,7 +126,7 @@ export default function Header() {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`lg:hidden ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'} absolute inset-x-0 top-full h-[calc(100dvh-4rem)] overflow-y-auto bg-void transition-opacity duration-300`}
+        className={`lg:hidden ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'} absolute inset-x-0 top-full h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain bg-void transition-opacity duration-300`}
       >
         <nav className="container-x flex flex-col gap-1 py-6" aria-label="Mobile">
           {NAV.map((n, i) => (

@@ -30,9 +30,9 @@ export default function SolarSystem() {
           </Reveal>
           <div>
             <SectionHeading id="orbit-title" eyebrow={tr(sunData.type)} title={t('orbitTitle')} lead={t('orbitHint')} />
-            <Reveal className="card flex gap-4 p-5">
-              <PlanetGlobe imageKey="sun" alt={tr(sunData.name)} className="h-20 w-20 shrink-0 shadow-glow-amber" />
-              <div>
+            <Reveal className="card flex flex-col gap-4 p-5 min-[480px]:flex-row">
+              <PlanetGlobe imageKey="sun" alt={tr(sunData.name)} className="h-16 w-16 shrink-0 shadow-glow-amber min-[480px]:h-20 min-[480px]:w-20" />
+              <div className="min-w-0">
                 <h3 className="text-xl font-semibold">{tr(sunData.name)}</h3>
                 <p className="mt-1 text-sm leading-relaxed text-slate-400">{tr(sunData.description)}</p>
                 <Credit imageKey="sun" className="mt-2" />

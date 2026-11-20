@@ -5,6 +5,29 @@ import { videosData } from '../data/videosData';
 import SectionHeading from '../components/SectionHeading';
 import Reveal from '../components/Reveal';
 
+/** Mobile-friendly version of the credit tables: one card per row (shown below md). */
+function CreditCards({ rows }) {
+  return (
+    <ul className="mt-6 space-y-3 md:hidden">
+      {rows.map((r) => (
+        <li key={r.key} className="flex gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-sm">
+          <img src={r.thumb} alt="" loading="lazy" className="h-14 w-16 shrink-0 rounded-md object-cover" />
+          <div className="min-w-0 flex-1">
+            <a href={r.href} target="_blank" rel="noreferrer" className="break-words text-sky-300 underline underline-offset-2">
+              {r.title}
+            </a>
+            <div className="mt-0.5 break-all font-mono text-[0.65rem] text-slate-500">{r.sub}</div>
+            <p className="mt-2 break-words text-xs leading-relaxed text-slate-300">{r.credit}</p>
+            <a href={r.licenceHref} target="_blank" rel="noreferrer" className="chip mt-2 inline-block hover:text-white">
+              {r.licence}
+            </a>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function Credits() {
   const { t, tr, lang } = useLang();
   const pick = (o) => o[lang] ?? o.en;
@@ -55,8 +78,20 @@ export default function Credits() {
         <h2 id="all-images" className="text-2xl font-bold sm:text-3xl">
           {t('allImages')}
         </h2>
-        <div className="mt-6 overflow-x-auto rounded-2xl border border-white/10">
-          <table className="w-full min-w-[720px] text-left text-sm">
+        <CreditCards
+          rows={Object.values(images).map((img) => ({
+            key: img.id,
+            thumb: img.src,
+            href: img.href,
+            title: img.title,
+            sub: img.id,
+            credit: img.credit,
+            licence: tr(licences[img.licence].short),
+            licenceHref: licences[img.licence].href,
+          }))}
+        />
+        <div className="mt-6 hidden overflow-x-auto rounded-2xl border border-white/10 md:block">
+          <table className="w-full text-left text-sm">
             <thead className="bg-white/[0.04] text-xs uppercase tracking-wider text-slate-400">
               <tr>
                 <th className="p-3">#</th>
@@ -95,8 +130,20 @@ export default function Credits() {
           {t('allVideos')}
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-400">{t('videosLicenceNote')}</p>
-        <div className="mt-6 overflow-x-auto rounded-2xl border border-white/10">
-          <table className="w-full min-w-[720px] text-left text-sm">
+        <CreditCards
+          rows={videosData.map((v) => ({
+            key: v.id,
+            thumb: v.poster,
+            href: v.href,
+            title: tr(v.title),
+            sub: `${v.archive} · ${v.duration}`,
+            credit: v.credit,
+            licence: tr(licences[v.licence].short),
+            licenceHref: licences[v.licence].href,
+          }))}
+        />
+        <div className="mt-6 hidden overflow-x-auto rounded-2xl border border-white/10 md:block">
+          <table className="w-full text-left text-sm">
             <thead className="bg-white/[0.04] text-xs uppercase tracking-wider text-slate-400">
               <tr>
                 <th className="p-3">#</th>
