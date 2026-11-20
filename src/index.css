@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    overflow-x: clip;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-void font-sans text-slate-200 antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 15% 0%, rgba(124, 58, 237, 0.16), transparent 60%),
+      radial-gradient(ellipse 60% 45% at 95% 30%, rgba(56, 189, 248, 0.09), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 50% 100%, rgba(255, 122, 61, 0.07), transparent 60%);
+    background-attachment: fixed;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: rgba(124, 58, 237, 0.45);
+    color: #fff;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight text-white;
+  }
+  :focus-visible {
+    outline: 2px solid #a78bfa;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .glass {
+    @apply border border-white/10 bg-white/[0.035] backdrop-blur-md;
+  }
+  .glass-strong {
+    @apply border border-white/10 bg-abyss/80 backdrop-blur-xl;
+  }
+  .card {
+    @apply glass rounded-3xl transition duration-500;
+  }
+  .card-hover {
+    @apply hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.06] hover:shadow-glow;
+  }
+  .eyebrow {
+    @apply font-display text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-violet-300/90;
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-corona via-orange-300 to-violet-300 bg-clip-text text-transparent;
+  }
+  .text-gradient-cool {
+    @apply bg-gradient-to-r from-sky-200 via-violet-200 to-fuchsia-300 bg-clip-text text-transparent;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition duration-300;
+  }
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-orange-400 to-amber-300 text-void shadow-glow-amber hover:brightness-110;
+  }
+  .btn-ghost {
+    @apply btn border border-white/15 bg-white/5 text-white hover:border-white/30 hover:bg-white/10;
+  }
+  .chip {
+    @apply rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300;
+  }
+  .prose-space p {
+    @apply mb-4 leading-relaxed text-slate-300;
+  }
+}
+
+@keyframes orbit { to { transform: rotate(360deg); } }
+@keyframes orbit-rev { to { transform: rotate(-360deg); } }
+
+/* Scroll-reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Thin, space-tinted scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(167, 139, 250, 0.35) transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* Black hole accretion disk */
+.bh-disk {
+  background: conic-gradient(from 0deg,
+    rgba(255, 210, 140, 0.95), rgba(255, 120, 50, 0.85), rgba(170, 40, 20, 0.5),
+    rgba(255, 150, 70, 0.9), rgba(255, 230, 180, 1), rgba(255, 120, 50, 0.85),
+    rgba(120, 30, 10, 0.4), rgba(255, 210, 140, 0.95));
+  -webkit-mask: radial-gradient(closest-side, transparent 52%, #000 56%, #000 78%, transparent 100%);
+          mask: radial-gradient(closest-side, transparent 52%, #000 56%, #000 78%, transparent 100%);
+  filter: blur(1.5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
